@@ -1,0 +1,23 @@
+{
+  "name": "chavascript",
+  "version": "1.0.0",
+  "description": "ChavaScript language transpiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChavaScript/chavascript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChavaScript/chavascript/issues"
+  },
+  "homepage": "https://github.com/ChavaScript/chavascript#readme",
+  "dependencies": {
+    "chavascript-parser": "^1.0.1",
+    "escodegen": "^1.11.1"
+  }
+}
