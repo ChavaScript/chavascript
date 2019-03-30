@@ -2,6 +2,8 @@
 
 The ChavaScript language transpiler
 
+https://chavascript.github.io/chavascript
+
 # Installation
 
 ```bash
