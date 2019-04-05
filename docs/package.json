@@ -1,0 +1,22 @@
+{
+  "name": "chavascript-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "clean": "rm -rf dist",
+    "clean-build": "npm run clean && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "chavascript": "0.0.1",
+    "chavascript-parser": "^1.0.2",
+    "highlight.js": "^9.15.6"
+  }
+}

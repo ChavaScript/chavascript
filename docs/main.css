@@ -53,7 +53,7 @@ button:hover {
     padding-right: 0 !important;
 }
 
-.editor, .result {
+.editor, .result, .error-details {
     width: 100%;
     resize: vertical;
     background: #262722;

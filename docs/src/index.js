@@ -12,24 +12,40 @@ const chsResult = document.getElementById("chs-code");
 const result = document.getElementsByClassName("result").item(0);
 const executeButton = document.getElementById("execute");
 const jsResult = document.getElementById("js-result");
-const results = document.getElementById("results");
-const error = document.getElementById("error");
 const errorDetails = document.getElementsByClassName("error-details").item(0);
+const outputJs = document.getElementById("output-js");
+const outputError = document.getElementById("output-error");
+const outputConsole = document.getElementById("output-console");
+const transpileError = document.getElementById("transpile-error");
+const runtimeError = document.getElementById("runtime-error");
 
 function execute() {
     const input = textarea.value;
-    const {jsCode, e} = tryTranspile(input);
-    if (e) {
-        errorDetails.innerText = e.toString();
-        results.style.display = "none";
-        error.style.display = "block";
-    } else {
-        results.style.display = "block";
-        error.style.display = "none";
-        jsResult.innerText = jsCode;
-        hljs.highlightBlock(jsResult);
-        result.innerText = evalAndCaptureOutput(jsCode);
+    const transpileResult = tryTranspile(input);
+    if (transpileResult.e) {
+        errorDetails.innerText = transpileResult.e.toString();
+        transpileError.style.display = "block";
+        runtimeError.style.display = "none";
+        outputJs.style.display = "none";
+        outputConsole.style.display = "none";
+        outputError.style.display = "block";
+        return;
     }
+    jsResult.innerText = transpileResult.jsCode;
+    hljs.highlightBlock(jsResult);
+    outputJs.style.display = "block";
+    const evalResult = tryEvalAndCaptureOutput(transpileResult.jsCode);
+    if (evalResult.e) {
+        errorDetails.innerText = evalResult.e.toString();
+        transpileError.style.display = "none";
+        runtimeError.style.display = "block";
+        outputConsole.style.display = "none";
+        outputError.style.display = "block";
+        return;
+    }
+    result.innerText = evalResult.output;
+    outputConsole.style.display = "block";
+    outputError.style.display = "none";
 }
 
 function tryTranspile(input) {
@@ -41,15 +57,19 @@ function tryTranspile(input) {
     }
 }
 
-function evalAndCaptureOutput(code) {
-    const original = console.log;
-    let result = "";
-    console.log = function() {
-        result += Array.from(arguments).join(", ");
-    };
-    eval(code);
-    console.log = original;
-    return result;
+function tryEvalAndCaptureOutput(code) {
+    try {
+        const original = console.log;
+        let output = "";
+        console.log = function() {
+            output += Array.from(arguments).join(", ");
+        };
+        eval(code);
+        console.log = original;
+        return {e: undefined, output};
+    } catch (e) {
+        return {e, output: undefined};
+    }
 }
 
 function onBlur() {
