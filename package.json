@@ -1,6 +1,6 @@
 {
   "name": "chavascript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ChavaScript language transpiler",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/ChavaScript/chavascript#readme",
   "dependencies": {
-    "chavascript-parser": "^1.0.1",
+    "chavascript-parser": "^1.0.3",
     "escodegen": "^1.11.1"
   }
 }
