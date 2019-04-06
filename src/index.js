@@ -31,7 +31,7 @@ export {TokContext, types as tokContexts} from "./tokencontext"
 export {isIdentifierChar, isIdentifierStart} from "./identifier"
 export {Token} from "./tokenize"
 export {isNewLine, lineBreak, lineBreakG, nonASCIIwhitespace} from "./whitespace"
-export {translateVariables, localizeWord, localizedKeyword, localizedOperator} from "./localization"
+export {localizedKeyword, localizedOperator} from "./localization"
 
 export const version = "6.1.1"
 

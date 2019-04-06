@@ -1,5 +1,4 @@
 import {isIdentifierStart, isIdentifierChar, isLet} from "./identifier"
-import {localizeWord} from "./localization"
 import {types as tt, keywords as keywordTypes} from "./tokentype"
 import {Parser} from "./state"
 import {SourceLocation} from "./locutil"
@@ -702,8 +701,6 @@ pp.readWord = function() {
     word = type.label
   } else if (isLet(word)) {
     word = "let"
-  } else {
-    word = localizeWord(word)
   }
   return this.finishToken(type, word)
 }
