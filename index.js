@@ -1,4 +1,4 @@
-const parser = require("chavascript-parser");
+const parser = require("./dist/chavascript-parser");
 const escodegen = require("escodegen");
 
 function parse(input, options) {
@@ -15,8 +15,17 @@ function run(input, options) {
     eval(generated);
 }
 
+const translateVariables = parser.translateVariables;
+const localizeWord = parser.localizeWord;
+const localizedKeyword = parser.localizedKeyword;
+const localizedOperator = parser.localizedOperator;
+
 module.exports = {
     parse,
     transpile,
     run,
+    translateVariables,
+    localizeWord,
+    localizedKeyword,
+    localizedOperator
 };

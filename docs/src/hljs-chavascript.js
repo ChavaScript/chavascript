@@ -1,4 +1,4 @@
-import {localizedKeyword} from "chavascript-parser";
+import {localizedKeyword} from "chavascript";
 
 const keywords = 'in of if for while finally var new function do return void else break catch ' +
     'instanceof with throw case default try this switch continue typeof delete ' +
