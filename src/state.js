@@ -1,5 +1,4 @@
 import {reservedWords, keywords} from "./identifier"
-import {translateNode} from "./localization"
 import {types as tt} from "./tokentype"
 import {lineBreak} from "./whitespace"
 import {getOptions} from "./options"
@@ -90,9 +89,7 @@ export class Parser {
   parse() {
     let node = this.options.program || this.startNode()
     this.nextToken()
-    const result = this.parseTopLevel(node)
-    translateNode(result)
-    return result
+    return this.parseTopLevel(node)
   }
 
   get inFunction() { return (this.currentVarScope().flags & SCOPE_FUNCTION) > 0 }
