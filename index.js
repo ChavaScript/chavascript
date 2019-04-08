@@ -15,17 +15,15 @@ function run(input, options) {
     eval(generated);
 }
 
-const translateVariables = parser.translateVariables;
-const localizeWord = parser.localizeWord;
 const localizedKeyword = parser.localizedKeyword;
 const localizedOperator = parser.localizedOperator;
+const localizeWord = parser.localizeWord;
 
 module.exports = {
     parse,
     transpile,
     run,
-    translateVariables,
-    localizeWord,
     localizedKeyword,
-    localizedOperator
+    localizedOperator,
+    localizeWord
 };
