@@ -1,21 +1,35 @@
 import localizationSettings from "./localization_settings";
 
+const reversedDictionary = {};
+for (const key in localizationSettings.dictionary) {
+    reversedDictionary[localizationSettings.dictionary[key]] = key;
+}
+
 export function localizedKeyword(keyword) {
     return localizationSettings.keywords[keyword] || keyword
 }
 
-export function localizedOperator(operator) {
-    return localizationSettings.operators[operator] || operator
+export function localizedIdentifier(identifier) {
+    return reversedDictionary[identifier] || identifier
 }
 
-export function localizeWord(word) {
-    return localizationSettings.dictionary[word] || localizeWordAlphabetically(word)
+export function translateIdentifier(identifier) {
+    return localizationSettings.dictionary[identifier] || translateIdentifierAlphabetically(identifier)
 }
 
-export function localizeWordAlphabetically(word) {
+export function translateIdentifierAlphabetically(identifier) {
     let result = ""
-    for (const char of word) {
-        result += localizationSettings.chars[char] || 'a'
+    for (const char of identifier) {
+        result += localizationSettings.chars[char] || char
     }
     return result
+}
+
+export function isQuote(charCode) {
+    for (const quote of localizationSettings.quotes) {
+        if (charCode === quote.charCodeAt(0)) {
+            return true
+        }
+    }
+    return false
 }

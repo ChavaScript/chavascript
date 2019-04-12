@@ -1,9 +1,10 @@
 {
   "name": "chavascript",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "ChavaScript language transpiler",
   "main": "index.js",
   "module": "index.js",
+  "homepage": "https://chavascript.github.io/chavascript/",
   "repository": {
     "type": "git",
     "url": "https://github.com/ChavaScript/chavascript"

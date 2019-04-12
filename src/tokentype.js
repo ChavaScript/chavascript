@@ -1,4 +1,4 @@
-import {localizedKeyword, localizedOperator} from "./localization"
+import {localizedKeyword} from "./localization"
 
 // ## Token types
 
@@ -94,23 +94,23 @@ export const types = {
   // binary operators with a very low precedence, that should result
   // in AssignmentExpression nodes.
 
-  eq: new TokenType(localizedOperator("="), {beforeExpr: true, isAssign: true}),
-  assign: new TokenType(localizedOperator("_="), {beforeExpr: true, isAssign: true}),
-  incDec: new TokenType(localizedOperator("++/--"), {prefix: true, postfix: true, startsExpr: true}),
-  prefix: new TokenType(localizedOperator("!/~"), {beforeExpr: true, prefix: true, startsExpr: true}),
-  logicalOR: binop(localizedOperator("||"), 1),
-  logicalAND: binop(localizedOperator("&&"), 2),
-  bitwiseOR: binop(localizedOperator("|"), 3),
-  bitwiseXOR: binop(localizedOperator("^"), 4),
-  bitwiseAND: binop(localizedOperator("&"), 5),
-  equality: binop(localizedOperator("==/!=/===/!=="), 6),
-  relational: binop(localizedOperator("</>/<=/>="), 7),
-  bitShift: binop(localizedOperator("<</>>/>>>"), 8),
-  plusMin: new TokenType(localizedOperator("+/-"), {beforeExpr: true, binop: 9, prefix: true, startsExpr: true}),
-  modulo: binop(localizedOperator("%"), 10),
-  star: binop(localizedOperator("*"), 10),
-  slash: binop(localizedOperator("/"), 10),
-  starstar: new TokenType(localizedOperator("**"), {beforeExpr: true}),
+  eq: new TokenType("=", {beforeExpr: true, isAssign: true}),
+  assign: new TokenType("_=", {beforeExpr: true, isAssign: true}),
+  incDec: new TokenType("++/--", {prefix: true, postfix: true, startsExpr: true}),
+  prefix: new TokenType("!/~", {beforeExpr: true, prefix: true, startsExpr: true}),
+  logicalOR: binop("||", 1),
+  logicalAND: binop("&&", 2),
+  bitwiseOR: binop("|", 3),
+  bitwiseXOR: binop("^", 4),
+  bitwiseAND: binop("&", 5),
+  equality: binop("==/!=/===/!==", 6),
+  relational: binop("</>/<=/>=", 7),
+  bitShift: binop("<</>>/>>>", 8),
+  plusMin: new TokenType("+/-", {beforeExpr: true, binop: 9, prefix: true, startsExpr: true}),
+  modulo: binop("%", 10),
+  star: binop("*", 10),
+  slash: binop("/", 10),
+  starstar: new TokenType("**", {beforeExpr: true}),
 
   // Keyword token types.
   _break: kw("break"),

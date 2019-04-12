@@ -60,7 +60,7 @@ pp.toAssignable = function(node, isBinding, refDestructuringErrors) {
       break
 
     case "AssignmentExpression":
-      if (node.operator !== localizedOperator("=")) this.raise(node.left.end, "Only '=' operator can be used for specifying default value.")
+      if (node.operator !== "=") this.raise(node.left.end, "Only '=' operator can be used for specifying default value.")
       node.type = "AssignmentPattern"
       delete node.operator
       this.toAssignable(node.left, isBinding)

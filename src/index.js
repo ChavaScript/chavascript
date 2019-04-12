@@ -31,7 +31,9 @@ export {TokContext, types as tokContexts} from "./tokencontext"
 export {isIdentifierChar, isIdentifierStart} from "./identifier"
 export {Token} from "./tokenize"
 export {isNewLine, lineBreak, lineBreakG, nonASCIIwhitespace} from "./whitespace"
-export {localizedKeyword, localizedOperator, localizeWord} from "./localization"
+export {localizedKeyword, translateIdentifier, localizedIdentifier} from "./localization"
+import * as ls from "./localization_settings"
+export const localizationSettings = ls
 
 export const version = "6.1.1"
 

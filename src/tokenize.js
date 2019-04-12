@@ -1,5 +1,5 @@
 import {isIdentifierStart, isIdentifierChar, isLet} from "./identifier"
-import {localizeWord} from "./localization"
+import {translateIdentifier, isQuote} from "./localization"
 import {types as tt, keywords as keywordTypes} from "./tokentype"
 import {Parser} from "./state"
 import {SourceLocation} from "./locutil"
@@ -289,6 +289,10 @@ pp.readToken_eq_excl = function(code) { // '=!'
 }
 
 pp.getTokenFromCode = function(code) {
+  // Quotes produce strings.
+  if (isQuote(code)) {
+    return this.readString(code)
+  }
   switch (code) {
   // The interpretation of a dot depends on whether it is followed
   // by a digit or another two dots.
@@ -324,10 +328,6 @@ pp.getTokenFromCode = function(code) {
   // number, or float.
   case 49: case 50: case 51: case 52: case 53: case 54: case 55: case 56: case 57: // 1-9
     return this.readNumber(false)
-
-  // Quotes produce strings.
-  case 34: case 39: // '"', "'"
-    return this.readString(code)
 
   // Operators are parsed inline in tiny state machines. '=' (61) is
   // often referred to. `finishOp` simply skips the amount of
@@ -377,7 +377,7 @@ pp.readRegexp = function() {
     if (!escaped) {
       if (ch === "[") inClass = true
       else if (ch === "]" && inClass) inClass = false
-      else if (ch === localizedOperator("/") && !inClass) break
+      else if (ch === "/" && !inClass) break
       escaped = ch === "\\"
     } else escaped = false
     ++this.pos
@@ -703,7 +703,7 @@ pp.readWord = function() {
   } else if (isLet(word)) {
     word = "let"
   } else {
-    word = localizeWord(word)
+    word = translateIdentifier(word)
   }
   return this.finishToken(type, word)
 }
