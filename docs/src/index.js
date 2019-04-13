@@ -5,7 +5,7 @@ import * as chavascript from "chavascript";
 window.chavascript = chavascript;
 window.buildEditor = buildEditor;
 hljs.registerLanguage("javascript", javascript);
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const elements = document.getElementsByClassName("chs-editor");
     for (const element of elements) {
         buildEditor(element, element.innerHTML);
@@ -50,10 +50,12 @@ function buildEditor(element, code) {
     const outputConsole = element.getElementsByClassName("output-console").item(0);
     const transpileError = element.getElementsByClassName("transpile-error").item(0);
     const runtimeError = element.getElementsByClassName("runtime-error").item(0);
+    const langTools = ace.require("ace/ext/language_tools");
     const editor = ace.edit(editorElement);
     editor.setTheme("ace/theme/darkula");
     editor.session.setMode("ace/mode/chavascript");
     editor.setShowPrintMargin(false);
+    editor.setOptions({enableBasicAutocompletion: true, enableLiveAutocompletion: true});
     editor.session.$bidiHandler.setRtlDirection(editor, true);
     editor.session.$bidiHandler.$isRtl = true;
     editor.setOption("rtlText", false);
@@ -62,6 +64,60 @@ function buildEditor(element, code) {
     editor.renderer.updateFull();
     editor.setValue(code);
     editor.selection.moveTo(Infinity, Infinity);
+
+    const {navigateLeft, navigateRight} = editor;
+    editor.navigateLeft = navigateRight;
+    editor.navigateRight = navigateLeft;
+
+    const {navigateLineEnd, navigateLineStart} = editor;
+    editor.navigateLineEnd = navigateLineStart;
+    editor.navigateLineStart = navigateLineEnd;
+
+    const {navigateWordLeft, navigateWordRight} = editor;
+    editor.navigateWordLeft = navigateWordRight;
+    editor.navigateWordRight = navigateWordLeft;
+
+    editor.commands.addCommand({
+        name: "execute",
+        bindKey: {win: "Ctrl-Enter", mac: "Command-Enter"},
+        exec: execute
+    });
+
+    const keywords = extractObjectValues(chavascript.localizationSettings.default.keywords);
+    const publicSymbols = extractObjectValues(chavascript.localizationSettings.default.dictionary);
+    const keywordResults = keywords.map(value => ({name: value, value, score: 1, meta: "מילת מפתח"}));
+    const symbolResults = publicSymbols.map(value => ({name: value, value, score: 1, meta: "משתנה פומבי"}));
+    const completions = keywordResults.concat(symbolResults);
+    const chavascriptCompleter = {
+        getCompletions: function (editor, session, pos, prefix, callback) {
+            callback(null, completions);
+        }
+    };
+
+    const keywordObject = {};
+    const identifierRegex = /^[$A-Zא-ת_][0-9א-תA-Z_$]*$/i;
+    for (const keyword of keywords) {
+        keywordObject[keyword] = true;
+    }
+    const localCompleter = {
+        getCompletions: function (editor, session, pos, prefix, callback) {
+            langTools.textCompleter.getCompletions(editor, session, pos, prefix, function (e, results) {
+                if (e) {
+                    return callback(e);
+                }
+                const completions = results
+                    .filter(result => !keywordObject[result.value])         // filter keywords
+                    .filter(result => identifierRegex.test(result.value))   // filter non identifiers
+                    .map(result => {
+                    result.meta = "מקומי";
+                    return result;
+                });
+                callback(null, completions);
+            });
+        }
+    };
+
+    editor.completers = [localCompleter, chavascriptCompleter];
 
     function execute() {
         const input = editor.getValue();
@@ -105,7 +161,7 @@ function buildEditor(element, code) {
         try {
             const original = console.log;
             let lines = [];
-            console.log = function() {
+            console.log = function () {
                 lines.push(Array.from(arguments).join(", "));
             };
             eval(code);
@@ -126,7 +182,7 @@ function updateLineDirection(e, renderer) {
     const $bidiHandler = session.$bidiHandler;
     const cells = renderer.$textLayer.$lines.cells;
     const width = renderer.layerConfig.width - renderer.layerConfig.padding + "px";
-    cells.forEach(function(cell) {
+    cells.forEach(function (cell) {
         const style = cell.element.style;
         if ($bidiHandler && $bidiHandler.isRtlLine(cell.row)) {
             style.direction = "rtl";
@@ -138,4 +194,13 @@ function updateLineDirection(e, renderer) {
             style.width = "";
         }
     });
+}
+
+
+function extractObjectValues(obj) {
+    const result = [];
+    for (const key in obj) {
+        result.push(obj[key])
+    }
+    return result;
 }

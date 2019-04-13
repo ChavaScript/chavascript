@@ -10,11 +10,11 @@ export function localizedKeyword(keyword) {
 }
 
 export function localizedIdentifier(identifier) {
-    return reversedDictionary[identifier] || identifier
+    return localizationSettings.dictionary[identifier] || identifier
 }
 
 export function translateIdentifier(identifier) {
-    return localizationSettings.dictionary[identifier] || translateIdentifierAlphabetically(identifier)
+    return reversedDictionary[identifier] || translateIdentifierAlphabetically(identifier)
 }
 
 export function translateIdentifierAlphabetically(identifier) {

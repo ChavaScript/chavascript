@@ -60,6 +60,10 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
         return mapWords(words, chs.localizedKeyword);
     }
 
+    function localizeIdentifier(words) {
+        return mapWords(words, chs.localizedIdentifier);
+    }
+
     function mapWords(words, mapper) {
         return words.split("|").map(mapper).join("|");
     }
@@ -68,6 +72,7 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
     var JavaScriptHighlightRules = function(options) {
         var keywordMapper = this.createKeywordMapper({
             "variable.language":
+                localizeIdentifier(
                 "Array|Boolean|Date|Function|Iterator|Number|Object|RegExp|String|Proxy|"  + // Constructors
                 "Namespace|QName|XML|XMLList|"                                             + // E4X
                 "ArrayBuffer|Float32Array|Float64Array|Int16Array|Int32Array|Int8Array|"   +
@@ -77,14 +82,15 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                 "decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|eval|isFinite|" + // Non-constructor functions
                 "isNaN|parseFloat|parseInt|"                                               +
                 "JSON|Math|"                                                               + // Other
-                "this|arguments|prototype|window|document"                                 , // Pseudo
+                "arguments|prototype|window|document|console"                                  // Pseudo
+                ),
             "keyword":
                 localizeKeywords(
-                    "const|yield|import|get|set|async|await|" +
+                    "this|const|yield|import|get|set|async|await|" +
                     "break|case|catch|continue|default|delete|do|else|finally|for|function|" +
                     "if|in|of|instanceof|new|return|switch|throw|try|typeof|let|var|while|with|debugger|" +
                     "__parent__|__count__|escape|unescape|with|__proto__|" +
-                    "class|enum|extends|super|export|implements|private|public|interface|package|protected|static",
+                    "class|enum|extends|super|export|implements|private|public|interface|package|protected|static"
                 ),
             "storage.type":
                 localizeKeywords("const|let|var|function"),
@@ -103,18 +109,17 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
             "3[0-7][0-7]?|" + // oct
             "[4-7][0-7]?|" + //oct
             ".)";
-
         this.$rules = {
             "no_regex" : [
                 DocCommentHighlightRules.getStartRule("doc-start"),
                 comments("no_regex"),
                 {
                     token : "string",
-                    regex : "'(?=.)",
+                    regex : "'(?=.)|׳(?=.)",
                     next  : "qstring"
                 }, {
                     token : "string",
-                    regex : '"(?=.)',
+                    regex : '"(?=.)|״(?=.)',
                     next  : "qqstring"
                 }, {
                     token : "constant.numeric", // hexadecimal, octal and binary
@@ -181,9 +186,9 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                     token : ["support.constant"],
                     regex : /that\b/
                 }, {
-                    token : ["storage.type", "punctuation.operator", "support.function.firebug"],
-                    regex : /(console)(\.)(warn|info|log|error|time|trace|timeEnd|assert)\b/
-                }, {
+                //     token : ["storage.type", "punctuation.operator", "support.function.firebug"],
+                //     regex : /(console)(\.)(warn|info|log|error|time|trace|timeEnd|assert)\b/
+                // }, {
                     token : keywordMapper,
                     regex : identifierRe
                 }, {
@@ -337,7 +342,7 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                     consumeLineEnd  : true
                 }, {
                     token : "string",
-                    regex : '"|$',
+                    regex : '"|״|$',
                     next  : "no_regex"
                 }, {
                     defaultToken: "string"
@@ -353,7 +358,7 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                     consumeLineEnd  : true
                 }, {
                     token : "string",
-                    regex : "'|$",
+                    regex : "'|׳|$",
                     next  : "no_regex"
                 }, {
                     defaultToken: "string"
@@ -484,7 +489,7 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                 regex : "\\s+"
             }, {
                 token : "string.attribute-value.xml",
-                regex : "'",
+                regex : "'|׳",
                 stateName : "jsx_attr_q",
                 push : [
                     {token : "string.attribute-value.xml", regex: "'", next: "pop"},
@@ -493,7 +498,7 @@ define("ace/mode/chavascript_highlight_rules",["require","exports","module","ace
                 ]
             }, {
                 token : "string.attribute-value.xml",
-                regex : '"',
+                regex : '"|״',
                 stateName : "jsx_attr_qq",
                 push : [
                     {token : "string.attribute-value.xml", regex: '"', next: "pop"},
@@ -737,7 +742,7 @@ define("ace/mode/chavascript",["require","exports","module","ace/lib/oop","ace/m
 
         this.lineCommentStart = "//";
         this.blockComment = {start: "/*", end: "*/"};
-        this.$quotes = {'"': '"', "'": "'", "`": "`"};
+        this.$quotes = {'"': '"', "'": "'", "`": "`", "״": "״", "׳": "׳"};
 
         this.getNextLineIndent = function(state, line, tab) {
             var indent = this.$getIndent(line);
@@ -777,6 +782,45 @@ define("ace/mode/chavascript",["require","exports","module","ace/lib/oop","ace/m
 
         this.autoOutdent = function(state, doc, row) {
             this.$outdent.autoOutdent(doc, row);
+        };
+
+        var mode = this;
+        this.createWorker = function(session) {
+            var worker = new WorkerClient(["ace"], "ace/mode/chavascript_worker", "ChavaScriptWorker");
+            worker.attachToDocument(session.getDocument());
+
+            worker.on("terminate", function() {
+                session.clearAnnotations();
+            });
+
+            function getError(str) {
+                try {
+                    window.chavascript.transpile(str);
+                } catch(e) {
+                    return e;
+                }
+            }
+
+            worker.on("update", function (event) {
+                var errors = [];
+                var error = getError(event.data);
+                if (error) {
+                    const index = error.message.lastIndexOf("(");
+                    const text = error.message.substring(0, index - 1);
+                    const position = error.message.substring(index);
+                    const positionParts = position.substring(1, position.length - 1).split(":");
+                    errors.push({
+                        row: +positionParts[0] - 1,
+                        column: +positionParts[1] - 1,
+                        text: text,
+                        type: "error",
+                        raw: error.message
+                    })
+                }
+                session.setAnnotations(errors);
+            });
+
+            return worker;
         };
 
         this.$id = "ace/mode/chavascript";

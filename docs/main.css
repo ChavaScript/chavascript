@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'MiriamMonoCLM';
+    src: url('MiriamMonoCLM-Book.ttf'); /* IE9 Compat Modes */
+    src: url('MiriamMonoCLM-Book.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('MiriamMonoCLM-Book.ttf') format('woff'), /* Modern Browsers */
+    url('MiriamMonoCLM-Book.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('MiriamMonoCLM-Book.ttf#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 * {
     box-sizing: border-box
 }
@@ -55,15 +64,13 @@ button:hover {
 
 .editor, .result, .error-details {
     width: 100%;
-    resize: vertical;
     background: #262722;
     border: none;
-    color: white;
-    font-family: monospace;
-    font-size: 13px;
+    font-family: monospace, "MiriamMonoCLM", serif;
+    font-size: 14px;
     line-height: 1.6;
     border-right: .4em solid rgba(87, 204, 138, .8);
-    padding: 19px;
+    padding: 9px;
     outline-color: rgba(87, 204, 138, .8);
     outline-width: 1px;
 }
