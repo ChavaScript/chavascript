@@ -5,11 +5,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="./logo.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i" rel="stylesheet">
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./darcula.css">
     <script src="dist/main.js"></script>
     <script src="ace.js"></script>
     <script src="ext-language_tools.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var element = document.getElementById("playground-editor");
+            var code = window.location.hash ? decodeURIComponent(window.location.hash.substr(1)) : element.innerHTML;
+            var firstLoad = true;
+            var editor = buildEditor(element, code, function(value) {
+                if (firstLoad) {
+                    return;
+                }
+                const hash = "#" + encodeURIComponent(value);
+                if (history.pushState) {
+                    history.pushState(null, null, hash);
+                } else {
+                    location.hash = hash;
+                }
+            });
+            firstLoad = false;
+            editor.focus();
+        });
+    </script>
 </head>
 <body>
 <header class="app-header">
@@ -47,7 +68,7 @@
             <p>
                 בעמוד זה ניתן לערוך, להריץ ולהחלף (בלעז: transpile) קוד מקור בשפת חווה סקריפט.
             </p>
-            <div class="chs-editor">יכולת היוש(מושא) {
+            <div id="playground-editor">יכולת היוש(מושא) {
     בקרה.תעד(״היוש, ״ + מושא);
 }
 היוש(״עולם״);</div>

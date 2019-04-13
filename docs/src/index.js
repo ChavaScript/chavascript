@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function buildEditor(element, code) {
+function buildEditor(element, code, onExecute) {
     element.innerHTML = `
     <div class="editor"></div>
     <div style="text-align: left; margin: 10px 0;">
@@ -81,6 +81,15 @@ function buildEditor(element, code) {
     editor.selection.moveCursorLineStart = moveCursorLineEnd;
     editor.selection.moveCursorLineEnd = moveCursorLineStart;
 
+    const {selectLeft, selectRight} = editor.selection;
+    editor.selection.selectLeft = selectRight;
+    editor.selection.selectRight = selectLeft;
+
+    const {remove} = editor;
+    editor.remove = function(dir) {
+        remove.apply(editor, [dir === "left" ? "right" : "left"]);
+    };
+
     editor.commands.addCommand({
         name: "execute",
         bindKey: {win: "Ctrl-Enter", mac: "Command-Enter"},
@@ -125,6 +134,7 @@ function buildEditor(element, code) {
 
     function execute() {
         const input = editor.getValue();
+        onExecute && onExecute(input);
         const transpileResult = tryTranspile(input);
         if (transpileResult.e) {
             errorDetails.innerText = transpileResult.e.toString();
@@ -147,7 +157,7 @@ function buildEditor(element, code) {
             outputError.style.display = "block";
             return;
         }
-        result.innerText = evalResult.output;
+        result.innerHTML = evalResult.output;
         outputConsole.style.display = "block";
         outputError.style.display = "none";
     }
@@ -163,14 +173,30 @@ function buildEditor(element, code) {
 
     function tryEvalAndCaptureOutput(code) {
         try {
-            const original = console.log;
+            const {log, warn, error, debug, trace} = console;
             let lines = [];
             console.log = function () {
-                lines.push(Array.from(arguments).join(", "));
+                lines.push(`<span class="console-log">${Array.from(arguments).join(", ")}</span>`);
+            };
+            console.warn = function () {
+                lines.push(`<span class="console-warn">${Array.from(arguments).join(", ")}</span>`);
+            };
+            console.error = function () {
+                lines.push(`<span class="console-error">${Array.from(arguments).join(", ")}</span>`);
+            };
+            console.debug = function () {
+                lines.push(`<span class="console-debug">${Array.from(arguments).join(", ")}</span>`);
+            };
+            console.trace = function () {
+                lines.push(`<span class="console-trace">${Array.from(arguments).join(", ")}</span>`);
             };
             eval(code);
-            console.log = original;
-            const output = lines.join("\n");
+            console.log = log;
+            console.warn = warn;
+            console.error = error;
+            console.debug = debug;
+            console.trace = trace;
+            const output = lines.join("<br>");
             return {e: undefined, output};
         } catch (e) {
             return {e, output: undefined};
@@ -179,6 +205,7 @@ function buildEditor(element, code) {
 
     executeButton.onclick = execute;
     execute();
+    return editor;
 }
 
 function updateLineDirection(e, renderer) {
@@ -207,4 +234,17 @@ function extractObjectValues(obj) {
         result.push(obj[key])
     }
     return result;
+}
+
+if (localStorage) {
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            if (!localStorage.getItem("reloaded")) {
+                localStorage.setItem("reloaded", "1");
+                location.reload();
+            } else {
+                localStorage.removeItem("reloaded");
+            }
+        }, 0);
+    });
 }

@@ -13,12 +13,12 @@
 
 html {
     direction: rtl;
-    line-height: 1.6
+    line-height: 1.6;
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
     margin: 0;
-    font-family: sans-serif;
     background: #353b43;
     color: #afbac4
 }
@@ -33,12 +33,21 @@ button {
     color: white;
     border: none;
     border-radius: 2px;
-    font-size: 15px;
+    font-size: 13px;
     box-shadow: 0 0 3px 0px rgba(0,0,0,0.5);
+    font-family: inherit;
 }
 
 button:hover {
     background: #56d293;
+}
+
+.console-warn {
+    color: #d2a731;
+}
+
+.console-error {
+    color: #d23f2f;
 }
 
 .highlight {
