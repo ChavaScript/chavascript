@@ -69,13 +69,17 @@ function buildEditor(element, code) {
     editor.navigateLeft = navigateRight;
     editor.navigateRight = navigateLeft;
 
-    const {navigateLineEnd, navigateLineStart} = editor;
-    editor.navigateLineEnd = navigateLineStart;
-    editor.navigateLineStart = navigateLineEnd;
+    const {moveCursorShortWordLeft, moveCursorShortWordRight} = editor.selection;
+    editor.selection.moveCursorShortWordLeft = moveCursorShortWordRight;
+    editor.selection.moveCursorShortWordRight = moveCursorShortWordLeft;
 
-    const {navigateWordLeft, navigateWordRight} = editor;
-    editor.navigateWordLeft = navigateWordRight;
-    editor.navigateWordRight = navigateWordLeft;
+    const {moveCursorLongWordLeft, moveCursorLongWordRight} = editor.selection;
+    editor.selection.moveCursorLongWordLeft = moveCursorLongWordRight;
+    editor.selection.moveCursorLongWordRight = moveCursorLongWordLeft;
+
+    const {moveCursorLineStart, moveCursorLineEnd} = editor.selection;
+    editor.selection.moveCursorLineStart = moveCursorLineEnd;
+    editor.selection.moveCursorLineEnd = moveCursorLineStart;
 
     editor.commands.addCommand({
         name: "execute",
