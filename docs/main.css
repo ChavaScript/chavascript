@@ -1,10 +1,7 @@
 @font-face {
     font-family: 'MiriamMonoCLM';
     src: url('MiriamMonoCLM-Book.ttf'); /* IE9 Compat Modes */
-    src: url('MiriamMonoCLM-Book.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('MiriamMonoCLM-Book.ttf') format('woff'), /* Modern Browsers */
-    url('MiriamMonoCLM-Book.ttf')  format('truetype'), /* Safari, Android, iOS */
-    url('MiriamMonoCLM-Book.ttf#svgFontName') format('svg'); /* Legacy iOS */
+    src: url('MiriamMonoCLM-Book.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('MiriamMonoCLM-Book.ttf') format('woff'), /* Modern Browsers */ url('MiriamMonoCLM-Book.ttf') format('truetype'), /* Safari, Android, iOS */ url('MiriamMonoCLM-Book.ttf#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 * {
@@ -23,8 +20,71 @@ body {
     color: #afbac4
 }
 
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+#gh-link {
+    fill: #24292f;
+    color: #57cc8a;
+    position: fixed;
+    top: 0;
+    border: 0;
+    left: 0;
+    transform: scale(-1, 1);
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0)
+    }
+    20%, 60% {
+        transform: rotate(-25deg)
+    }
+    40%, 80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
+
 .nav {
     margin: 30px 0;
+}
+
+table {
+    background: #242930;
+    border-radius: 2px;
+    border-collapse: collapse;
+}
+
+thead tr, tbody tr:not(:last-child) {
+    border-bottom: 1px solid #30353c;
+}
+
+tbody tr:hover {
+    background: #282d33;
+}
+
+thead th {
+    padding: 22px;
+}
+
+th, td {
+    padding: 12px 22px;
+}
+
+.js-code, .chs-code {
+    font-family: monospace, "MiriamMonoCLM", serif;
+    font-size: 14px;
 }
 
 button {
@@ -34,7 +94,7 @@ button {
     border: none;
     border-radius: 2px;
     font-size: 13px;
-    box-shadow: 0 0 3px 0px rgba(0,0,0,0.5);
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.5);
     font-family: inherit;
 }
 

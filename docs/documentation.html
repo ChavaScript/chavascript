@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>מגרש המשחקים של חווה - חווה סקריפט</title>
+    <title>תיעוד - חווה סקריפט</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="./logo.png"/>
@@ -11,26 +11,6 @@
     <script src="dist/main.js"></script>
     <script src="ace.js"></script>
     <script src="ext-language_tools.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var element = document.getElementById("playground-editor");
-            var code = window.location.hash ? decodeURIComponent(window.location.hash.substr(1)) : element.innerHTML;
-            var firstLoad = true;
-            var editor = buildEditor(element, code, function(value) {
-                if (firstLoad) {
-                    return;
-                }
-                const hash = "#" + encodeURIComponent(value);
-                if (history.pushState) {
-                    history.pushState(null, null, hash);
-                } else {
-                    location.hash = hash;
-                }
-            });
-            firstLoad = false;
-            editor.focus();
-        });
-    </script>
 </head>
 <body>
 <a target="_blank" href="https://github.com/ChavaScript/chavascript" class="github-corner" aria-label="View source on GitHub">
@@ -74,18 +54,52 @@
 <main class="app-container">
     <article class="post">
         <header class="post-header">
-            <h1 class="post-title">מגרש המשחקים של חווה</h1>
+            <h1 class="post-title">תיעוד מילות מפתח ושמות משתנים</h1>
+            <p>
+                בעמוד זה אני אפרט באופן מלא ועדכני את מילות המפתח השמורות בעזרתן תוכלו להדריך אותי, ואת שמות המשתנים הפומביים חווה סקריפט.
+            </p>
         </header>
         <div class="post-content">
+            <h2>מילות מפתח</h2>
             <p>
-                בעמוד זה ניתן לערוך, להריץ ולהחלף (בלעז: transpile) קוד מקור בשפת חווה סקריפט.
+                מילות מפתח בחווה סקריפט הן מילים מיוחדות, בעזרתן תוכלו להדריך אותי כיצד להריץ את הקוד שאתם כותבים.
+                כל מילות המפתח השמורות בחווה סקריפט מתורגמות בפשטות למילות מפתח מתאימות בשפה הלועזית JavaScript,
+                להלן רשימה מלאה של כל מילות המפתח ותרגומן למילת המפתח במקבילה ב-JavaScript.
             </p>
-            <div id="playground-editor">יכולת ברך(מבורך) {
-    בקרה.תעד(״היוש, ״ + מבורך);
-}
-ברך(״עולם״);</div>
+            <table id="keyword-list">
+                <thead>
+                <tr>
+                    <th>מילת מפתח בחווה סקריפט</th>
+                    <th>מילת מפתח מתאימה ב- JavaScript</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="post-content">
+            <h2>שמות משתנים</h2>
+            <p>
+                שמות משתנים בחווה סקריפט מתורגמים ללעז בצורה אוטומטית, ראשית, על מנת לאפשר שימוש במשתנים וסמלים פומביים
+                (דוגמת בקרה והבטחה - console ו-promise הלועזיים) ובשיטות (בלעז method) שלהם. סיבה נוספת לתרגום היא למנוע
+                קיום תוים עבריים בקוד בתוצאה שאפלוט בסוף הריצה. לכך סמלים שאינם מופיעים ברשימה המפורטת להלן, יתורגמו לאנגלית
+                באופן מילולי, תו-תו.
+                <br>
+                להלן רשימת מלאה של כל המילים אשר יתורגמו ללעז בכל מקום בקוד, ויאפשרו שימוש במשתנים ושיטות ספרייה של JavaScript.
+            </p>
+            <table id="variable-list">
+                <thead>
+                <tr>
+                    <th>מילת מפתח בחווה סקריפט</th>
+                    <th>מילת מפתח מתאימה ב- JavaScript</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </article>
+
 </main>
+
+
 </body>
 </html>

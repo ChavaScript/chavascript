@@ -6,10 +6,8 @@ window.chavascript = chavascript;
 window.buildEditor = buildEditor;
 hljs.registerLanguage("javascript", javascript);
 document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.getElementsByClassName("chs-editor");
-    for (const element of elements) {
-        buildEditor(element, element.innerHTML);
-    }
+    buildEditors();
+    buildDocumentation();
 });
 
 function buildEditor(element, code, onExecute) {
@@ -227,13 +225,45 @@ function updateLineDirection(e, renderer) {
     });
 }
 
-
 function extractObjectValues(obj) {
     const result = [];
     for (const key in obj) {
         result.push(obj[key])
     }
     return result;
+}
+
+function buildEditors() {
+    const elements = document.getElementsByClassName("chs-editor");
+    for (const element of elements) {
+        buildEditor(element, element.innerHTML);
+    }
+}
+
+function buildDocumentation() {
+    const keywordTable = document.getElementById("keyword-list");
+    populateTable(keywordTable, chavascript.localizationSettings.default.keywords, "hljs-keyword");
+    const varTable = document.getElementById("variable-list");
+    populateTable(varTable, chavascript.localizationSettings.default.dictionary, "hljs-built_in");
+}
+
+function populateTable(table, dictionary, className) {
+    if (!table) {
+        return;
+    }
+    const body = table.getElementsByTagName("tbody").item(0);
+    if (!body) {
+        return;
+    }
+    for (const eng in dictionary) {
+        const heb = dictionary[eng];
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td><code class="chs-code ${className}">${heb}</code></td>
+            <td style="direction: ltr;"><code class="js-code ${className}">${eng}</code></td>
+        `;
+        body.appendChild(tr);
+    }
 }
 
 if (localStorage) {

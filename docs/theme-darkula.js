@@ -97,7 +97,7 @@ font-style: italic;\
 color: #666666\
 }\
 .ace-darkula .ace_variable {\
-color: #9876AA\
+color: #e0c46c\
 }\
 .ace-darkula .ace_variable.ace_parameter {\
 color: #9876AA\
