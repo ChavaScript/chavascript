@@ -34,6 +34,11 @@ body {
     transform: scale(-1, 1);
 }
 
+.doc-comment {
+    padding: 0 9px;
+    font-size: 10px;
+}
+
 @keyframes octocat-wave {
     0%, 100% {
         transform: rotate(0)
@@ -80,6 +85,12 @@ thead th {
 
 th, td {
     padding: 12px 22px;
+}
+
+.doc-title {
+    text-align: center;
+    font-size: 12px;
+    background: #1c2025;
 }
 
 .js-code, .chs-code {

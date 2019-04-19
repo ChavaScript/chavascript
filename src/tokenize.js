@@ -1,5 +1,5 @@
 import {isIdentifierStart, isIdentifierChar, isLet} from "./identifier"
-import {translateIdentifier, isQuote} from "./localization"
+import {translateIdentifier, isQuote, isKeyword, reverseKeyword} from "./localization"
 import {types as tt, keywords as keywordTypes} from "./tokentype"
 import {Parser} from "./state"
 import {SourceLocation} from "./locutil"
@@ -702,6 +702,8 @@ pp.readWord = function() {
     word = type.label
   } else if (isLet(word)) {
     word = "let"
+  } else if (isKeyword(word)) {
+    word = reverseKeyword(word)
   } else {
     word = translateIdentifier(word)
   }

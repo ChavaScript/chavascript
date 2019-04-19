@@ -1,9 +1,7 @@
 import localizationSettings from "./localization_settings";
 
-const reversedDictionary = {};
-for (const key in localizationSettings.dictionary) {
-    reversedDictionary[localizationSettings.dictionary[key]] = key;
-}
+const reversedKeywords = reverseObject(localizationSettings.keywords)
+const reversedDictionary = reverseObject(localizationSettings.dictionary)
 
 export function localizedKeyword(keyword) {
     return localizationSettings.keywords[keyword] || keyword
@@ -32,4 +30,21 @@ export function isQuote(charCode) {
         }
     }
     return false
+}
+
+export function isKeyword(word) {
+    return word in reversedKeywords
+}
+
+export function reverseKeyword(word) {
+    return reversedKeywords[word]
+}
+
+function reverseObject(obj) {
+    const result = {}
+    for (const key in obj) {
+        const value = obj[key]
+        result[value] = key
+    }
+    return result
 }

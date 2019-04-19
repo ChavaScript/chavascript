@@ -10,6 +10,34 @@ document.addEventListener("DOMContentLoaded", function () {
     buildDocumentation();
 });
 
+const documentationClassifiers = {
+    "variables": "הצהרת משתנים",
+    "function": "יכולת",
+    "boolean": "קבועי הגיון",
+    "if": "ביטויי אם",
+    "loops": "לולאות",
+    "switch": "החלפת מקרה",
+    "try": "טיפול בשגיאות",
+    "oop": "תכנות מונחה עצמים",
+    "other": "אחרים",
+    "safety": "בטיחות סוג והידור",
+    "types": "סוגים",
+    "generic": "כלליים",
+    "functions": "יכולות פומביות",
+    "classes": "מחלקות פומביות",
+    "array": "שיטות מערך",
+    "string": "שיטות מחרוזת",
+    "promise": "שיטות הבטחה",
+    "math": "שיטות חשבון",
+    "console": "שיטות בקרה",
+    "json": "שיטות פנחס",
+};
+
+const documentationComments = {
+    "JSON": "(JavaScript Object Notation)",
+    "פנחס": "(פענוח נתונים חווה סקריפט)",
+};
+
 function buildEditor(element, code, onExecute) {
     element.innerHTML = `
     <div class="editor"></div>
@@ -84,7 +112,7 @@ function buildEditor(element, code, onExecute) {
     editor.selection.selectRight = selectLeft;
 
     const {remove} = editor;
-    editor.remove = function(dir) {
+    editor.remove = function (dir) {
         remove.apply(editor, [dir === "left" ? "right" : "left"]);
     };
 
@@ -120,9 +148,9 @@ function buildEditor(element, code, onExecute) {
                     .filter(result => !keywordObject[result.value])         // filter keywords
                     .filter(result => identifierRegex.test(result.value))   // filter non identifiers
                     .map(result => {
-                    result.meta = "מקומי";
-                    return result;
-                });
+                        result.meta = "מקומי";
+                        return result;
+                    });
                 callback(null, completions);
             });
         }
@@ -242,9 +270,9 @@ function buildEditors() {
 
 function buildDocumentation() {
     const keywordTable = document.getElementById("keyword-list");
-    populateTable(keywordTable, chavascript.localizationSettings.default.keywords, "hljs-keyword");
+    populateTable(keywordTable, chavascript.localizationSettings.default.classifiedKeywords, "hljs-keyword");
     const varTable = document.getElementById("variable-list");
-    populateTable(varTable, chavascript.localizationSettings.default.dictionary, "hljs-built_in");
+    populateTable(varTable, chavascript.localizationSettings.default.classifiedDictionary, "hljs-built_in");
 }
 
 function populateTable(table, dictionary, className) {
@@ -255,14 +283,23 @@ function populateTable(table, dictionary, className) {
     if (!body) {
         return;
     }
-    for (const eng in dictionary) {
-        const heb = dictionary[eng];
+    for (const categoryName in dictionary) {
+        const category = dictionary[categoryName];
+        const title = documentationClassifiers[categoryName] || categoryName;
         const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td><code class="chs-code ${className}">${heb}</code></td>
-            <td style="direction: ltr;"><code class="js-code ${className}">${eng}</code></td>
-        `;
+        tr.innerHTML = `<td class="doc-title" colspan="2">${title}</td>`;
         body.appendChild(tr);
+        for (const eng in category) {
+            const heb = category[eng];
+            const engComments = typeof documentationComments[eng] === "string" ? documentationComments[eng] : "";
+            const hebComments = typeof documentationComments[heb] === "string" ? documentationComments[heb] : "";
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><code class="chs-code ${className}">${heb}</code><span class="doc-comment">${hebComments}</span></td>
+                <td style="direction: ltr;"><code class="js-code ${className}">${eng}</code><span class="doc-comment">${engComments}</span></td>
+            `;
+            body.appendChild(tr);
+        }
     }
 }
 
