@@ -54,43 +54,68 @@
 <main class="app-container">
 
     <article class="post">
-        <header class="post-header">
-            <h1 class="post-title">Markdown Syntax Guide</h1>
-            <div class="post-meta">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="icon icon-calendar">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Mar 11, 2019
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="icon icon-clock">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    3 min read
-                </div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         class="icon icon-tag">
-                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                        <line x1="7" y1="7" x2="7" y2="7"></line>
-                    </svg>
-                    <a class="tag" href="https://chavascript.github.io/chavascript/tags/markdown/">Markdown</a><a
-                        class="tag" href="https://chavascript.github.io/chavascript/tags/css/">Css</a><a
-                        class="tag" href="https://chavascript.github.io/chavascript/tags/html/">Html</a><a
-                        class="tag" href="https://chavascript.github.io/chavascript/tags/themes/">Themes</a></div>
-            </div>
-        </header>
         <div class="post-content">
+            <h1 class="post-title">חווה סקריפט</h1>
+            <p>
+                היי, שמי חווה, וזו שפת התכנות שלי, חווה סקריפט, שפת תסריט בעברית בלבד,
+                אשר מומרת בזמן אמת ל-JavaScript על ידי תרגום מילות המפתח ושמות המשתנים מעברית ללועזית.
+                בואו ונכתוב את התוכנית הראשונה שלנו:
+            </p>
+            <div class="chs-editor">יכולת לברך(מבורך) {
+    בקרה.תעד(״היוש, ״ + מבורך);
+}
+לברך(״עולם״);</div>
+            <blockquote>
+                בכל מקום שיופיע קוד חווה סקריפט באתר, אאפשר לערוך את הקוד ולבקש שאריץ אותו. הקוד ירוץ בדפדפן שלכם ע״י המרתו
+                ל-JavaScript תחילה, ולאחר מכן שערוך של הקוד אשר נוצר. את תוצאת ההמרה תוכלו לראות משמאל, ואת הפלט לממשק
+                הבקרה (בלעז:
+                <i>console</i>)
+                תוכלו לראות מימין.
+            </blockquote>
+
+            <p>
+                באתר של חווה תוכלו גם למצוא את
+                <a href="playground.html">מרגש המשחקים</a>,
+                בו תוכלו להשתעשע עם קוד חווה סקריפט, ואת
+                <a href="documentation.html">עמוד התיעוד</a>,
+                המכיל תיאור מפורט של כל מילות המפתח והמילון אשר מנחים אותי בזמן המרת הקוד.
+                <br>
+                בעמוד זה, אני אציג בזריזות את שפת חווה סקריפט.
+            </p>
+
+            <h3 class="post-title">תוכן עניינים</h3>
+            <p>...</p>
+
+            <h3 class="post-title">משתנים</h3>
+            <p>
+                בחווה סקריפט ניתן להצהיר על משתנים ב-3 אופנים, בדומה ל-JavaScript, ע״י שימוש במילות המפתח
+                <code class="chs-code inline hljs-keyword">משתנה</code>,
+                <code class="chs-code inline hljs-keyword">יהי</code>
+                ו-
+                <code class="chs-code inline hljs-keyword">קבוע</code>
+                אשר אמיר ל-
+                <code class="js-code inline hljs-keyword">var</code>,
+                <code class="js-code inline hljs-keyword">let</code>
+                ו-
+                <code class="js-code inline hljs-keyword">const</code>
+                בהתאמה.
+            </p>
+            <div class="chs-editor">משתנה א = ״מדברים״;
+// את ערכו של א ניתן לשנות
+יהי ב = ״על״;
+// את ערכו של ב ניתן לשנות
+קבוע ג = ״הא ודא״;
+// את ג לא ניתן לשנות
+בקרה.תעד(א, ב, ג);</div>
+            <blockquote>
+                שימו לב לקריאה
+                <code class="chs-code inline"><span class="hljs-built_in">בקרה</span>.תעד</code>
+                אשר ממומרת ל-
+                <code class="js-code inline"><span class="hljs-built_in">console</span>.log</code>,
+                בהמשך העמוד אסביר את המנגנון שמחנה אותי בזמן התרגום.
+            </blockquote>
+
+
             <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it
                 shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
 

@@ -42,24 +42,24 @@ function buildEditor(element, code, onExecute) {
     element.innerHTML = `
     <div class="editor"></div>
     <div style="text-align: left; margin: 10px 0;">
-        <button class="execute">הרץ (Ctrl + Enter)</button>
+        <button class="execute">הריצי (Ctrl + Enter)</button>
     </div>
     <div>
         <div class="output-console" style="width: 50%; float: right; padding-left: 5px;">
-            תוצאת ההרצה
+            הפלט
             <div class="result"></div>
         </div>
         <div class="output-error" style="display: none; width: 50%; float: right; padding-left: 5px;">
             <div class="transpile-error">
-                לא מצליח להחלף את הקוד
+                לא מצליחה להמיר את הקוד
             </div>
             <div class="runtime-error">
-                לא מצליח להריץ את הקוד
+                לא מצליחה להריץ את הקוד
             </div>
             <div class="error-details"></div>
         </div>
         <div class="output-js" style="width: 50%; float: left; padding-right: 5px;">
-            קוד ה- JavaScript המהוחלף
+            תוצאת ההמרה
             <div class="highlight js-highlight">
                 <pre><code class="javascript js-result"></code></pre>
             </div>
