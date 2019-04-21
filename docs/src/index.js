@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     buildDocumentation();
 });
 
+console.log("test");
+
 const documentationClassifiers = {
     "variables": "הצהרת משתנים",
     "function": "יכולת",
