@@ -115,6 +115,40 @@
                 בהמשך העמוד אסביר את המנגנון שמחנה אותי בזמן התרגום.
             </blockquote>
 
+            <h3 class="post-title">יכולות</h3>
+            <p>
+                בחווה סקריפט ניתן להגדיר
+                <code class="chs-code inline hljs-keyword">יכולת</code>
+                אשר למעשה תתורגם ל-
+                <code class="js-code inline hljs-keyword">function</code>
+                הלועזית. מתוך גוף היכולת ניתן להנחות אותי להחזיר ערך או לחזור ע״י שימוש במילת המפתח
+                <code class="chs-code inline hljs-keyword">החזירי</code>
+                אשר למעשה תתורגם ל-
+                <code class="js-code inline hljs-keyword">return</code>,
+                ולגשת ל-
+                <code class="chs-code inline hljs-keyword">טיעונים</code>
+                הלוא הם ה-
+                <code class="js-code inline hljs-keyword">arguments</code>.
+            </p>
+            <div class="chs-editor">יכולת לדבר1(נושא) {
+        החזירי ״מדברים על ״ + נושא;
+}
+בקרה.תעד(לדבר1(״הא״));
+
+יכולת לדבר2() {
+    עבור (קבוע טיעון של טיעונים) {
+        בקרה.תעד(״מדברים על ״ + טיעון);
+    }
+}
+לדבר2(״הא״, ״דא״);</div>
+            <blockquote>
+                שימו לב ליכולת
+                <code class="chs-code inline">לדבר2</code>,
+                זוהי יכולת משונה (בלעז
+                <i>variadic function</i>),
+                הציצו על תוצאה ההמרה משמאל על מנת להבין את קוד ה-JavaScript שנוצר.
+            </blockquote>
+
 
             <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it
                 shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
