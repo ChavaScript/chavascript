@@ -149,6 +149,101 @@
                 הציצו על תוצאה ההמרה משמאל על מנת להבין את קוד ה-JavaScript שנוצר.
             </blockquote>
 
+            <h3 class="post-title">ביטויי הגיון</h3>
+            <p>
+                ביטויי הגיון בחווה סקריפט מתבססים על מילות המפתח
+                <code class="chs-code inline hljs-keyword">אמת</code>,
+                <code class="chs-code inline hljs-keyword">שקר</code>,
+                <code class="chs-code inline hljs-keyword">אם</code>
+                ו-
+                <code class="chs-code inline hljs-keyword">אחרת</code>.
+            </p>
+            <div class="chs-editor">יכולת שחור_או_לבן(האם_שחור) {
+    אם (האם_שחור) {
+        בקרה.תעד(״שחור״);
+    } אחרת {
+        בקרה.תעד(״לבן״);
+    }
+}
+
+שחור_או_לבן(אמת);
+שחור_או_לבן(שקר);</div>
+
+            <h3 class="post-title">לולאות</h3>
+            <p>
+                בחווה סקריפט 3 סוגי לולאות, לולאת
+                <code class="chs-code inline hljs-keyword">עבור</code>
+                (<code class="js-code inline hljs-keyword">for</code>),
+                לולאת
+                <code class="chs-code inline hljs-keyword">כלעוד</code>
+                (<code class="js-code inline hljs-keyword">while</code>)
+                ולולאת
+                <code class="chs-code inline hljs-keyword">עשי</code>
+                (<code class="js-code inline hljs-keyword">do</code>).
+                <br>
+                לולאת
+                <code class="chs-code inline hljs-keyword">עבור</code>
+                יכולה להתבצע גם על מפתחות עצם ע״י שימוש ב-
+                <code class="chs-code inline hljs-keyword">מתוך</code>
+                (<code class="js-code inline hljs-keyword">in</code>),
+                או על ערכי העצם ע״י שימוש ב-
+                <code class="chs-code inline hljs-keyword">של</code>
+                (<code class="js-code inline hljs-keyword">of</code>).
+                <br>
+                מתוך גוף לולאות ניתן להנחות אותי לקפוץ החוצה מגוף הלולאה ע״י שימוש ב-
+                <code class="chs-code inline hljs-keyword">שברי</code>
+                (<code class="js-code inline hljs-keyword">break</code>),
+                או לקפוץ לחזרה הבאה ע״י שימוש ב-
+                <code class="chs-code inline hljs-keyword">המשיכי</code>
+                (<code class="js-code inline hljs-keyword">continue</code>).
+            </p>
+            <div class="chs-editor">קבוע חברים = [״עמיחי״, ״נחמייה״, ״עמוס״];
+
+בקרה.תעד(״לולאת עבור״);
+עבור (יהי מ = 0; מ < חברים.אורך; מ++) {
+    בקרה.תעד(מ);
+}
+
+בקרה.תעד(״לולאת עבור-מתוך״);
+עבור (קבוע מ מתוך חברים) {
+    בקרה.תעד(מ);
+}
+
+בקרה.תעד(״לולאת עבור-של״);
+עבור (קבוע חבר של חברים) {
+    בקרה.תעד(חבר);
+}
+
+בקרה.תעד(״לולאת כלעוד״);
+יהי מ = 0;
+כלעוד (מ < חברים.אורך) {
+    בקרה.תעד(מ);
+    מ++;
+}
+
+בקרה.תעד(״לולאת עשי״);
+עשי {
+    בקרה.תעד(מ);
+    מ--;
+} כלעוד (מ >= 0);
+
+בקרה.תעד(״הדפיסי עד נחמייה״);
+עבור (קבוע חבר של חברים) {
+    אם (חבר === ״נחמייה״) {
+        שברי;
+    }
+    בקרה.תעד(חבר);
+}
+
+בקרה.תעד(״הדפיסי ללא נחמייה״);
+עבור (קבוע חבר של חברים) {
+    אם (חבר === ״נחמייה״) {
+        המשיכי;
+    }
+    בקרה.תעד(חבר);
+}</div>
+
+            <h3 class="post-title">הערות</h3>
 
             <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it
                 shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
