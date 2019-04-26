@@ -14,9 +14,8 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var element = document.getElementById("playground-editor");
-            var code = window.location.hash ? decodeURIComponent(window.location.hash.substr(1)) : element.innerHTML;
             var firstLoad = true;
-            var editor = buildEditor(element, code, function(value) {
+            function onExecute(value) {
                 if (firstLoad) {
                     return;
                 }
@@ -26,7 +25,14 @@
                 } else {
                     location.hash = hash;
                 }
-            });
+            }
+            var editor;
+            if (window.location.hash) {
+                var code = decodeURIComponent(window.location.hash.substr(1));
+                editor = buildEditor(element, code, onExecute);
+            } else {
+                editor = buildEditorFromSnippetName(element, onExecute);
+            }
             firstLoad = false;
             editor.focus();
         });
@@ -80,12 +86,19 @@
             <p>
                 בעמוד זה ניתן להשתעשע עם חווה סקריפט. לערוך, ולבקש שאמיר ואריץ את הקוד הכתוב.
             </p>
-            <div id="playground-editor">יכולת לברך(מבורך) {
-    בקרה.תעד(״היוש, ״ + מבורך);
-}
-לברך(״עולם״);</div>
+            <div id="playground-editor">playground</div>
+            <blockquote>
+                שימו לב שבכל פעם שתבקשו שאריץ את הקוד, כתובת האתר תייצג את הקוד שהורץ, כך שניתן יהיה להעתיק אותו קקישור
+                ולשתף קוד בקלות עם עמיתים.
+            </blockquote>
         </div>
     </article>
 </main>
+<footer class="app-container">
+    <hr>
+    מצאת תקלה? חשבת על רעיון? אנא דווח לי
+    <a href="https://github.com/ChavaScript/chavascript/issues" target="_blank">בעמוד התקלות</a>
+    של חווה ב-GitHub, אשמח לכל סוג של עזרה.
+</footer>
 </body>
 </html>

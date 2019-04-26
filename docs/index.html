@@ -61,10 +61,7 @@
                 אשר מומרת בזמן אמת ל-JavaScript על ידי תרגום מילות המפתח ושמות המשתנים מעברית ללועזית.
                 בואו ונכתוב את התוכנית הראשונה שלנו:
             </p>
-            <div class="chs-editor">יכולת לברך(מבורך) {
-    בקרה.תעד(״היוש, ״ + מבורך);
-}
-לברך(״עולם״);</div>
+            <div class="chs-editor">main</div>
             <blockquote>
                 בכל מקום שיופיע קוד חווה סקריפט באתר, אאפשר לערוך את הקוד ולבקש שאריץ אותו. הקוד ירוץ בדפדפן שלכם ע״י המרתו
                 ל-JavaScript תחילה, ולאחר מכן שערוך של הקוד אשר נוצר. את תוצאת ההמרה תוכלו לראות משמאל, ואת הפלט לממשק
@@ -84,9 +81,18 @@
             </p>
 
             <h3 class="post-title">תוכן עניינים</h3>
-            <p>...</p>
+            <ul>
+                <li><a href="#משתנים">משתנים</a></li>
+                <li><a href="#יכולות">יכולות</a></li>
+                <li><a href="#ביטויי_הגיון">ביטויי הגיון</a></li>
+                <li><a href="#החלפת_מקרה">החלפת מקרה</a></li>
+                <li><a href="#טיפול_בשגיאות">טיפול בשגיאות</a></li>
+                <li><a href="#תכנות_מונחה_עצמים">תכנות מונחה עצמים</a></li>
+                <li><a href="#הערות">הערות</a></li>
+                <li><a href="#תרגום_שמות_משתנים">תרגום שמות משתנים</a></li>
+            </ul>
 
-            <h3 class="post-title">משתנים</h3>
+            <h3 id="משתנים" class="post-title">משתנים</h3>
             <p>
                 בחווה סקריפט ניתן להצהיר על משתנים ב-3 אופנים, בדומה ל-JavaScript, ע״י שימוש במילות המפתח
                 <code class="chs-code inline hljs-keyword">משתנה</code>,
@@ -100,22 +106,17 @@
                 <code class="js-code inline hljs-keyword">const</code>
                 בהתאמה.
             </p>
-            <div class="chs-editor">משתנה א = ״מדברים״;
-// את ערכו של א ניתן לשנות
-יהי ב = ״על״;
-// את ערכו של ב ניתן לשנות
-קבוע ג = ״הא ודא״;
-// את ג לא ניתן לשנות
-בקרה.תעד(א, ב, ג);</div>
+            <div class="chs-editor">variables</div>
             <blockquote>
                 שימו לב לקריאה
                 <code class="chs-code inline"><span class="hljs-built_in">בקרה</span>.תעד</code>
                 אשר ממומרת ל-
                 <code class="js-code inline"><span class="hljs-built_in">console</span>.log</code>,
-                בהמשך העמוד אסביר את המנגנון שמחנה אותי בזמן התרגום.
+                את המנגנון שמחנה אותי בזמן התרגום אסביר
+                <a href="#תרגום_שמות_משתנים">בהמשך העמוד</a>.
             </blockquote>
 
-            <h3 class="post-title">יכולות</h3>
+            <h3 id="יכולות" class="post-title">יכולות</h3>
             <p>
                 בחווה סקריפט ניתן להגדיר
                 <code class="chs-code inline hljs-keyword">יכולת</code>
@@ -130,17 +131,7 @@
                 הלוא הם ה-
                 <code class="js-code inline hljs-keyword">arguments</code>.
             </p>
-            <div class="chs-editor">יכולת לדבר1(נושא) {
-        החזירי ״מדברים על ״ + נושא;
-}
-בקרה.תעד(לדבר1(״הא״));
-
-יכולת לדבר2() {
-    עבור (קבוע טיעון של טיעונים) {
-        בקרה.תעד(״מדברים על ״ + טיעון);
-    }
-}
-לדבר2(״הא״, ״דא״);</div>
+            <div class="chs-editor">functions</div>
             <blockquote>
                 שימו לב ליכולת
                 <code class="chs-code inline">לדבר2</code>,
@@ -149,7 +140,7 @@
                 הציצו על תוצאה ההמרה משמאל על מנת להבין את קוד ה-JavaScript שנוצר.
             </blockquote>
 
-            <h3 class="post-title">ביטויי הגיון</h3>
+            <h3 id="ביטויי_הגיון" class="post-title">ביטויי הגיון</h3>
             <p>
                 ביטויי הגיון בחווה סקריפט מתבססים על מילות המפתח
                 <code class="chs-code inline hljs-keyword">אמת</code>,
@@ -158,18 +149,9 @@
                 ו-
                 <code class="chs-code inline hljs-keyword">אחרת</code>.
             </p>
-            <div class="chs-editor">יכולת שחור_או_לבן(האם_שחור) {
-    אם (האם_שחור) {
-        בקרה.תעד(״שחור״);
-    } אחרת {
-        בקרה.תעד(״לבן״);
-    }
-}
+            <div class="chs-editor">ifs</div>
 
-שחור_או_לבן(אמת);
-שחור_או_לבן(שקר);</div>
-
-            <h3 class="post-title">לולאות</h3>
+            <h3 id="לולאות" class="post-title">לולאות</h3>
             <p>
                 בחווה סקריפט 3 סוגי לולאות, לולאת
                 <code class="chs-code inline hljs-keyword">עבור</code>
@@ -197,266 +179,167 @@
                 <code class="chs-code inline hljs-keyword">המשיכי</code>
                 (<code class="js-code inline hljs-keyword">continue</code>).
             </p>
-            <div class="chs-editor">קבוע חברים = [״עמיחי״, ״נחמייה״, ״עמוס״];
+            <div class="chs-editor">loops</div>
 
-בקרה.תעד(״לולאת עבור״);
-עבור (יהי מ = 0; מ < חברים.אורך; מ++) {
-    בקרה.תעד(מ);
-}
-
-בקרה.תעד(״לולאת עבור-מתוך״);
-עבור (קבוע מ מתוך חברים) {
-    בקרה.תעד(מ);
-}
-
-בקרה.תעד(״לולאת עבור-של״);
-עבור (קבוע חבר של חברים) {
-    בקרה.תעד(חבר);
-}
-
-בקרה.תעד(״לולאת כלעוד״);
-יהי מ = 0;
-כלעוד (מ < חברים.אורך) {
-    בקרה.תעד(מ);
-    מ++;
-}
-
-בקרה.תעד(״לולאת עשי״);
-עשי {
-    בקרה.תעד(מ);
-    מ--;
-} כלעוד (מ >= 0);
-
-בקרה.תעד(״הדפיסי עד נחמייה״);
-עבור (קבוע חבר של חברים) {
-    אם (חבר === ״נחמייה״) {
-        שברי;
-    }
-    בקרה.תעד(חבר);
-}
-
-בקרה.תעד(״הדפיסי ללא נחמייה״);
-עבור (קבוע חבר של חברים) {
-    אם (חבר === ״נחמייה״) {
-        המשיכי;
-    }
-    בקרה.תעד(חבר);
-}</div>
-
-            <h3 class="post-title">הערות</h3>
-
-            <p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it
-                shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
-
-            <h2 id="headings">Headings</h2>
-
-            <p>The following HTML <code>&lt;h1&gt;</code>—<code>&lt;h6&gt;</code> elements represent six levels of
-                section headings. <code>&lt;h1&gt;</code> is the highest section level while <code>&lt;h6&gt;</code> is
-                the lowest.</p>
-
-            <h1 id="h1">H1</h1>
-
-            <h2 id="h2">H2</h2>
-
-            <h3 id="h3">H3</h3>
-
-            <h4 id="h4">H4</h4>
-
-            <h5 id="h5">H5</h5>
-
-            <h6 id="h6">H6</h6>
-
-            <h2 id="paragraph">Paragraph</h2>
-
-            <p>Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi
-                aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est
-                volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin
-                porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am
-                facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri
-                oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore
-                eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.</p>
-
-            <p>Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum,
-                core et que aut hariosam ex eat.</p>
-
-            <h2 id="blockquotes">Blockquotes</h2>
-
-            <p>The blockquote element represents content that is quoted from another source, optionally with a citation
-                which must be within a <code>footer</code> or <code>cite</code> element, and optionally with in-line
-                changes such as annotations and abbreviations.</p>
-
-            <h4 id="blockquote-without-attribution">Blockquote without attribution</h4>
-
-            <blockquote>
-                <p>Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-                    <strong>Note</strong> that you can use <em>Markdown syntax</em> within a blockquote.</p>
-            </blockquote>
-
-            <h4 id="blockquote-with-attribution">Blockquote with attribution</h4>
-
-            <blockquote>
-                <p>Don’t communicate by sharing memory, share memory by communicating.</p>
-                — <cite>Rob Pike<sup class="footnote-ref" id="fnref:1"><a
-                    href="https://chavascript.github.io/chavascript/#index.html">1</a></sup></cite>
-                <p></p>
-            </blockquote>
-
-            <h2 id="tables">Tables</h2>
-
-            <p>Tables aren’t part of the core Markdown spec, but Hugo supports supports them out-of-the-box.</p>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>Bob</td>
-                    <td>27</td>
-                </tr>
-
-                <tr>
-                    <td>Alice</td>
-                    <td>23</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h4 id="inline-markdown-within-tables">Inline Markdown within tables</h4>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Inline&nbsp;&nbsp;&nbsp;</th>
-                    <th>Markdown&nbsp;&nbsp;&nbsp;</th>
-                    <th>In&nbsp;&nbsp;&nbsp;</th>
-                    <th>Table</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td><em>italics</em></td>
-                    <td><strong>bold</strong></td>
-                    <td>
-                        <del>strikethrough</del>&nbsp;&nbsp;&nbsp;
-                    </td>
-                    <td><code>code</code></td>
-                </tr>
-                </tbody>
-            </table>
-
-            <h2 id="code-blocks">Code Blocks</h2>
-
-            <h4 id="code-block-with-backticks">Code block with backticks</h4>
-
-            <pre><code>html
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Example HTML5 Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;p&gt;Test&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-            <h4 id="code-block-indented-with-four-spaces">Code block indented with four spaces</h4>
-
-            <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Example HTML5 Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;p&gt;Test&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-            <h4 id="code-block-with-hugo-s-internal-highlight-shortcode">Code block with Hugo’s internal highlight
-                shortcode</h4>
-
-            <div class="highlight"><pre
-                    style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code
-                    class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span
-                        style="color:#f92672">=</span><span style="color:#e6db74">"en"</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span
-                        style="color:#f92672">=</span><span style="color:#e6db74">"UTF-8"</span>&gt;
-  &lt;<span style="color:#f92672">title</span>&gt;Example HTML5 Document&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-  &lt;<span style="color:#f92672">p</span>&gt;Test&lt;/<span style="color:#f92672">p</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;</code></pre>
-            </div>
-
-            <h2 id="list-types">List Types</h2>
-
-            <h4 id="ordered-list">Ordered List</h4>
-
-            <ol>
-                <li>First item</li>
-                <li>Second item</li>
-                <li>Third item</li>
-            </ol>
-
-            <h4 id="unordered-list">Unordered List</h4>
-
-            <ul>
-                <li>List item</li>
-                <li>Another item</li>
-                <li>And another item</li>
-            </ul>
-
-            <h4 id="nested-list">Nested list</h4>
-
-            <ul>
-                <li>Item</li>
-                <li>First Sub-item</li>
-                <li>Second Sub-item</li>
-            </ul>
-
-            <h2 id="other-elements-abbr-sub-sup-kbd-mark">Other Elements — abbr, sub, sup, kbd, mark</h2>
-
-            <p><abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.</p>
-
-            <p>H<sub>2</sub>O</p>
-
-            <p>X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup></p>
-
-            <p>Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.</p>
-
-            <p>Most
-                <mark>salamanders</mark>
-                are nocturnal, and hunt for insects, worms, and other small creatures.
+            <h3 id="החלפת_מקרה" class="post-title">החלפת מקרה</h3>
+            <p>
+                ביטויי החלפת מקרה בחווה סקריפט מתבססים על מילות המפתח
+                <code class="chs-code inline hljs-keyword">החליפי</code>,
+                <code class="chs-code inline hljs-keyword">מקרה</code>,
+                <code class="chs-code inline hljs-keyword">שברי</code>,
+                ו-
+                <code class="chs-code inline hljs-keyword">ברירתמחדל</code>.
             </p>
-            <div class="footnotes">
+            <div class="chs-editor">switches</div>
 
-                <hr>
+            <h3 id="טיפול_בשגיאות" class="post-title">טיפול בשגיאות</h3>
+            <p>
+                ביטויי טיפול בשגיאות בחווה סקריפט מתבססים על מילות המפתח
+                <code class="chs-code inline hljs-keyword">נסי</code>,
+                <code class="chs-code inline hljs-keyword">תפסי</code>,
+                <code class="chs-code inline hljs-keyword">ולבסוף</code>,
+                ו-
+                <code class="chs-code inline hljs-keyword">זרקי</code>.
+            </p>
+            <div class="chs-editor">errors</div>
+            <blockquote>
+                שימו לב לביטויי הלמבדה (בלעז:
+                <i>lambda expressions</i>),
+                בתחתית הקוד, אשר מאפשרים להגדיר יכולת חסרת שם.
+            </blockquote>
 
-                <ol>
-                    <li id="fn:1">The above quote is excerpted from Rob Pike’s <a
-                            href="https://www.youtube.com/watch?v=PAAkCSZUG1c">talk</a> during Gopherfest, November 18,
-                        2015.
-                        <a class="footnote-return"
-                           href="https://chavascript.github.io/chavascript/#index.html">^</a></li>
-                </ol>
-            </div>
+            <h3 id="תכנות_מונחה_עצמים" class="post-title">תכנות מונחה עצמים</h3>
+            <p>
+                תכנות מונחה עצמים בחווה סקריפט מבוסס על מילת המפתח
+                <code class="chs-code inline hljs-keyword">מחלקה</code>
+                אשר מאפשרת להגדיר מחלקה חדשה. מתוך גוף המחלקה, ניתן לגשת אל העצם עצמו ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">אנוכי</code>
+                (<code class="js-code inline hljs-keyword">this</code>).
+                ניתן להנחות אותי ליצור עצם חדש ממחלקה ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">צרי</code>
+                (<code class="js-code inline hljs-keyword">new</code>).
+                <br>
+                את בנאי המחלקה ניתן להגדיר באמצעות הצהרת יכולת הנקראת
+                <code class="chs-code inline hljs-keyword">בנאי</code>.
+            </p>
+            <div class="chs-editor">oop1</div>
+            <p>
+                ניתן להגדיר ירושה בין מחלקות ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">מרחיבה</code>
+                (<code class="js-code inline hljs-keyword">extends</code>),
+                מתוך גוף המחלקה היורשת ניתן לגשת למאפיינים ושיטות של מחלקת האם ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">אמא</code>
+                (<code class="js-code inline hljs-keyword">super</code>).
+            </p>
+            <div class="chs-editor">oop2</div>
+            <blockquote>
+                ניתן לתת למשתנה ערך ריק ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">כלום</code>
+                (<code class="js-code inline hljs-keyword">null</code>),
+                לבדוק מחלקה של עצם ע״י שימוש ב-
+                <code class="chs-code inline hljs-keyword">מסוג</code>
+                (<code class="js-code inline hljs-keyword">instanceof</code>)
+                ולהגדיר מאפיינים ושיטות נייחות ע״י שימוש במילה
+                <code class="chs-code inline hljs-keyword">נייח</code>
+                (<code class="js-code inline hljs-keyword">static</code>).
+            </blockquote>
+
+            <p>
+                את רשימת מילות המפתח המלאה ניתן למצוא
+                <a href="documentation.html#מילות_מפתח">בעמוד התיעוד</a>
+            </p>
+
+            <h3 id="הערות" class="post-title">הערות</h3>
+            <div class="chs-editor">comments</div>
+
+            <h3 id="תרגום_שמות_משתנים" class="post-title">תרגום שמות משתנים</h3>
+            <p>
+                בחווה סקריפט מנגנון לתרגום שמות משתנים. בזמן הרמת הקוד, בכל פעם שאתקל בשם משתנה, אמיר אותו ללועזית.
+                תחילת אחפש במילון שלי מילה מתאימה, אם אמצא תרגום למילה זו, אשתמש בו. כך לדוגמא אמיר את
+                <code class="chs-code inline hljs-built_in">בקרה</code>
+                ל-
+                <code class="js-code inline hljs-built_in">console</code>.
+                במידה ולא אמצא מילה זו במילון, אתרגם אותה באופן מילולי, כדי להימנע ממשתנים עבריים בקוד המומר.
+                <br>
+                נשים לב שמנגנון התרגום מאפשר שימוש במשתנים פומביים ובמאפיינים שלהם, דוגמת
+                <code class="chs-code inline"><span class="hljs-built_in">חשבון</span>.אקראי</code>
+                אשר יומר ל-
+                <code class="chs-code inline"><span class="hljs-built_in">math</span>.random</code>,
+                אך אם זאת, מאפשר גם להדיר משתנה בשם
+                <code class="chs-code inline hljs-built_in">חשבון</code>
+                אשר יתורגם ל-
+                <code class="js-code inline hljs-built_in">math</code>,
+                ובכך בעצם ידרוס את ההתייחסות למשתנה הגלובאלי, באופן עקבי לשפת המקור.
+            </p>
+            <div class="chs-editor">dictionary1</div>
+
+            <p>
+                משתנים פומביים נוספים אשר כדאי להכיר הם
+                <code class="chs-code inline hljs-built_in">לאמוגדר</code>
+                -
+                <code class="js-code inline hljs-built_in">undefined</code>,
+                <code class="chs-code inline hljs-built_in">לאמספר</code>
+                -
+                <code class="js-code inline hljs-built_in">NaN</code>,
+                <code class="chs-code inline hljs-built_in">חשבון</code>
+                -
+                <code class="js-code inline hljs-built_in">Math</code>,
+                <code class="chs-code inline hljs-built_in">הבטחה</code>
+                -
+                <code class="js-code inline hljs-built_in">promise</code>
+                ו-
+                <code class="chs-code inline hljs-built_in">פנחס</code>
+                <i>פענוח נתונים חווה סקריפט</i>
+                -
+                <code class="js-code inline hljs-built_in">JSON</code>
+                קיצור עבור
+                <i>JavaScript Object Notation</i>.
+            </p>
+            <div class="chs-editor">dictionary2</div>
+
+            <p>
+                שיטות ומאפיינים של משתנים פומביים מתורגמים אף הם. לדוגמא
+                <code class="chs-code inline"><span class="hljs-built_in">חשבון</span>.רצפה</code>
+                אשר מתורגם ל-
+                <code class="js-code inline"><span class="hljs-built_in">Math</span>.floor</code>,
+                <code class="chs-code inline"><span class="hljs-built_in">הבטחה</span>.הפר</code>
+                אשר מתורגם ל-
+                <code class="js-code inline"><span class="hljs-built_in">Promise</span>.reject</code>
+                ושיטות ומאפייני מערך
+                <code class="chs-code inline">אורך</code>,
+                <code class="chs-code inline">מפה</code>
+                ו-
+                <code class="chs-code inline">הפחת</code>,
+                אשר מתורגים ל-
+                <code class="js-code inline">length</code>,
+                <code class="js-code inline">map</code>
+                ו-
+                <code class="js-code inline">reduce</code>
+                בהתאמה.
+            </p>
+            <div class="chs-editor">dictionary3</div>
+            <blockquote>
+                נשים לב כי שמות ציווי של משתנים פומביים מוטים ללשון נקבה כי הם מנחים אותי באופן ישיר, דוגמת
+                <code class="chs-code inline hljs-keyword">שערכי</code>,
+                ואילו שמות ציווי אשר מהווים מאפיינים או שיטות של משתנה כלשהו מוטים ללשון נקבה משום שהם מנחים את המשתנה עצמו, לדוגמא
+                <code class="chs-code inline">מערך.מפה</code>
+                ולא מערך.מפי.
+            </blockquote>
+
+            <p>
+                את המילון המלא של חווה סקריפט ניתן למצוא
+                <a href="documentation.html#משתנים">בעמוד התיעוד</a>
+            </p>
+
         </div>
     </article>
 
 </main>
-
-
+<footer class="app-container">
+    <hr>
+    מצאת תקלה? חשבת על רעיון? אנא דווח לי
+    <a href="https://github.com/ChavaScript/chavascript/issues" target="_blank">בעמוד התקלות</a>
+    של חווה ב-GitHub, אשמח לכל סוג של עזרה.
+</footer>
 </body>
 </html>

@@ -1,16 +1,16 @@
 import hljs from "highlight.js/lib/highlight";
 import javascript from "highlight.js/lib/languages/javascript";
 import * as chavascript from "chavascript";
+import * as snippets from "./snippets";
 
 window.chavascript = chavascript;
 window.buildEditor = buildEditor;
+window.buildEditorFromSnippetName = buildEditorFromSnippetName;
 hljs.registerLanguage("javascript", javascript);
 document.addEventListener("DOMContentLoaded", function () {
     buildEditors();
     buildDocumentation();
 });
-
-console.log("test");
 
 const documentationClassifiers = {
     "variables": "הצהרת משתנים",
@@ -86,7 +86,7 @@ function buildEditor(element, code, onExecute) {
     editor.setOptions({enableBasicAutocompletion: true, enableLiveAutocompletion: true});
     editor.session.$bidiHandler.setRtlDirection(editor, true);
     editor.session.$bidiHandler.$isRtl = true;
-    editor.setOption("rtlText", false);
+    // editor.setOption("rtlText", false);
     editor.renderer.on("afterRender", updateLineDirection);
     editor.session.$bidiHandler.seenBidi = true;
     editor.renderer.updateFull();
@@ -201,29 +201,27 @@ function buildEditor(element, code, onExecute) {
 
     function tryEvalAndCaptureOutput(code) {
         try {
-            const {log, warn, error, debug, trace} = console;
+            const originalConsole = console;
             let lines = [];
-            console.log = function () {
-                lines.push(`<span class="console-log">${Array.from(arguments).join(", ")}</span>`);
-            };
-            console.warn = function () {
-                lines.push(`<span class="console-warn">${Array.from(arguments).join(", ")}</span>`);
-            };
-            console.error = function () {
-                lines.push(`<span class="console-error">${Array.from(arguments).join(", ")}</span>`);
-            };
-            console.debug = function () {
-                lines.push(`<span class="console-debug">${Array.from(arguments).join(", ")}</span>`);
-            };
-            console.trace = function () {
-                lines.push(`<span class="console-trace">${Array.from(arguments).join(", ")}</span>`);
+            console = {
+                log() {
+                    lines.push(`<span class="console-log">${Array.from(arguments).join(", ")}</span>`);
+                },
+                warn() {
+                    lines.push(`<span class="console-warn">${Array.from(arguments).join(", ")}</span>`);
+                },
+                error() {
+                    lines.push(`<span class="console-error">${Array.from(arguments).join(", ")}</span>`);
+                },
+                debug() {
+                    lines.push(`<span class="console-debug">${Array.from(arguments).join(", ")}</span>`);
+                },
+                trace() {
+                    lines.push(`<span class="console-trace">${Array.from(arguments).join(", ")}</span>`);
+                }
             };
             eval(code);
-            console.log = log;
-            console.warn = warn;
-            console.error = error;
-            console.debug = debug;
-            console.trace = trace;
+            console = originalConsole;
             const output = lines.join("<br>");
             return {e: undefined, output};
         } catch (e) {
@@ -266,8 +264,13 @@ function extractObjectValues(obj) {
 function buildEditors() {
     const elements = document.getElementsByClassName("chs-editor");
     for (const element of elements) {
-        buildEditor(element, element.innerHTML);
+        buildEditorFromSnippetName(element);
     }
+}
+
+function buildEditorFromSnippetName(element, onExecute) {
+    const code = snippets.default[element.innerHTML] || "";
+    return buildEditor(element, code, onExecute);
 }
 
 function buildDocumentation() {

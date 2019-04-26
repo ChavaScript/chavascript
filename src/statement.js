@@ -149,7 +149,7 @@ pp.parseStatement = function(context, topLevel, exports) {
 }
 
 pp.parseBreakContinueStatement = function(node, keyword) {
-  let isBreak = keyword === localizedKeyword("break")
+  let isBreak = keyword === "break"
   this.next()
   if (this.eat(tt.semi) || this.insertSemicolon()) node.label = null
   else if (this.type !== tt.name) this.unexpected()

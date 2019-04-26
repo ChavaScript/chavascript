@@ -103,6 +103,18 @@ blockquote {
     border-bottom: 1px solid #25262282;
 }
 
+hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #25262282;
+}
+
+footer {
+    margin-top: -55px;
+    font-size: 13px;
+}
+
 .doc-title {
     text-align: center;
     font-size: 12px;
