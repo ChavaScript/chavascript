@@ -34,6 +34,7 @@ export {isNewLine, lineBreak, lineBreakG, nonASCIIwhitespace} from "./whitespace
 export {localizedKeyword, translateIdentifier, localizedIdentifier} from "./localization"
 import * as ls from "./localization_settings"
 export const localizationSettings = ls
+export {ChavascriptBabelPlugin} from './babel-plugin';
 
 export const version = "6.1.1"
 
