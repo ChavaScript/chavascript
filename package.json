@@ -17,6 +17,7 @@
     "prepublish": "npm run clean-build"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
     "rollup": "^0.45.0",
     "rollup-plugin-buble": "^0.16.0"
   },
