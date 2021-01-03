@@ -22,7 +22,7 @@ const classifiedKeywords = {
         "for": "עבור",
         "of": "של",
         "in": "מתוך",
-        "while": "כלעוד",
+        "while": "כאשר",
         "do": "עשי",
         "break": "שברי",
         "continue": "המשיכי",
@@ -88,7 +88,7 @@ const classifiedKeywords = {
 const classifiedDictionary = {
     "generic": {
         "console": "בקרה",
-        "undefined": "לאמוגדר",
+        "undefined": "תוהו",
         "NaN": "לאמספר",
         "Infinity": "אינסוף",
         "JSON": "פנחס",
