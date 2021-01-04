@@ -16,7 +16,7 @@ export function translateIdentifier(identifier) {
 }
 
 export function translateIdentifierAlphabetically(identifier) {
-    let result = ""
+    let result = "chavascript_"
     for (const char of identifier) {
         result += localizationSettings.chars[char] || char
     }
