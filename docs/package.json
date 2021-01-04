@@ -16,6 +16,6 @@
   },
   "dependencies": {
     "chavascript": "0.1.0",
-    "highlight.js": "^9.15.6"
+    "highlight.js": "^10.4.1"
   }
 }
