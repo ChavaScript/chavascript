@@ -15,7 +15,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "chavascript": "0.1.1",
+    "chavascript": "0.1.3",
     "highlight.js": "^9.15.6"
   }
 }

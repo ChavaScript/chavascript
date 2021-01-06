@@ -137,7 +137,7 @@ const classifiedDictionary = {
         "debug": "ניפוי",
         "info": "מידע",
         "trace": "עקבות",
-        "warn": "אזהר",
+        "warn": "הזהר",
     },
     "json": {
         "stringify": "מחרז",
@@ -177,7 +177,7 @@ const classifiedDictionary = {
         "map": "מפה",
         "pop": "שלוף",
         "push": "דחוף",
-        "reduce": "הפחת",
+        "reduce": "צמצם",
         "reverse": "הפוך",
         "shift": "הסט",
         "slice": "פרוס",
