@@ -177,7 +177,7 @@ const classifiedDictionary = {
         "map": "מפה",
         "pop": "שלוף",
         "push": "דחוף",
-        "reduce": "הפחת",
+        "reduce": "צמצם",
         "reverse": "הפוך",
         "shift": "הסט",
         "slice": "פרוס",
