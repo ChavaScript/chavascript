@@ -1,6 +1,6 @@
 {
   "name": "chavascript",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ChavaScript language transpiler",
   "main": "index.js",
   "module": "index.js",
