@@ -23,7 +23,7 @@ export function translateIdentifierAlphabetically(identifier) {
             result += translated
         }
     }
-    return `chavascript_${result}_${simpleHash(identifier)}`
+    return `${result}_$${simpleHash(identifier).toString(36)}`
 }
 
 export function isQuote(charCode) {
