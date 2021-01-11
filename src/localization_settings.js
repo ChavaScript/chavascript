@@ -80,8 +80,8 @@ const classifiedKeywords = {
         "long": "ארוך",
         "char": "תו",
         "short": "קצר",
-        "double": "דובל",
-        "byte": "בית",
+        "double": "דאבל",
+        "byte": "בייט",
         "boolean": "בוליאן",
     },
 };
