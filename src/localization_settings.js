@@ -22,7 +22,7 @@ const classifiedKeywords = {
         "for": "עבור",
         "of": "של",
         "in": "מתוך",
-        "while": "כאשר",
+        "while": "בעוד",
         "do": "עשי",
         "break": "שברי",
         "continue": "המשיכי",
