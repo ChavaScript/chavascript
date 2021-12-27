@@ -84,6 +84,14 @@ const classifiedKeywords = {
         "byte": "בית",
         "boolean": "בוליאן",
     },
+    "node": {
+      "process": "תהליך",
+      "env": "סביבה",
+      "global": "עולמי",
+      "PWD": "נתע",
+      "cwd": "נתן",
+      "argv": "מערך_משתני_סביבה"
+    }
 };
 const classifiedDictionary = {
     "generic": {
